@@ -5,13 +5,13 @@ class SessionsController < ApplicationController
 
   def create
     # Find the user with that email address
-    user = User.find_by(email: params[:session][:email].downcase)
+    @user = User.find_by(email: params[:session][:email].downcase)
     # If that user exists and is authenticated with the correct password:
-    if user && user.authenticate(params[:session][:password])
+    if @user && @user.authenticate(params[:session][:password])
       # Log the user in and redirect to the user's show page
-      log_in user
-      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      redirect_to user
+      log_in @user
+      params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
+      redirect_to @user
     else
       # Create an error message
       flash.now[:danger] = 'Invalid email/password combination'

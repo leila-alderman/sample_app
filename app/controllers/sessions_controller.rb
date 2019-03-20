@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     # If that user exists and is authenticated with the correct password:
     if @user && @user.authenticate(params[:session][:password])
       # If the user has activated his/her account:
-      if user.activated?
+      if @user.activated?
         # Log the user in and redirect to the user's show page
         log_in @user
         params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)

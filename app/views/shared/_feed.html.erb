@@ -1,0 +1,6 @@
+<% if @feed_items.any? %>
+  <ol class="microposts">
+    <%# call the _micropost partial view since each element has class Micropost %>
+    <%= render @feed_items %>
+  </ol>
+<% end %>
